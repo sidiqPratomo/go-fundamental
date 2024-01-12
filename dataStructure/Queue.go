@@ -45,6 +45,8 @@ func main() {
 	// Check the size of the queue
 	fmt.Println("Queue size:", queue.Size())
 
+	array()
+
 	hashTable()
 }
 
