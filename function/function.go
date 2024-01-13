@@ -14,6 +14,10 @@ func main() {
 	luas, keliling := calculate(10, 2)
 	fmt.Println(luas)
 	fmt.Println(keliling)
+
+	scores := []int{10, 5, 8, 9, 7}
+	total := sum(scores)
+	fmt.Println(total)
 }
 
 func printMyResult(sentence string) {
@@ -46,6 +50,21 @@ func calculates(panjang int, lebar int) (luas int, keliling int) {
 
 	return luas, keliling
 }
+
+// quiz
+func sum(numbers []int) int {
+	// scores := []int{10, 5, 8, 9, 7}
+	var total int
+	for _, number := range numbers {
+		total = total + number
+	}
+	return total
+}
+
+// func hitung(number, numberTwo int, operation string) (int, error) {
+
+// }
+
 
 //1.input
 //2.proses
