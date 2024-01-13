@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 func main() {
 	// sentence := printMyResults("saya sedang")
@@ -18,6 +21,13 @@ func main() {
 	scores := []int{10, 5, 8, 9, 7}
 	total := sum(scores)
 	fmt.Println(total)
+
+	result, err := hitung(10, 2, "*")
+	if err != nil {
+		fmt.Println("terjadi kesalahan")
+		fmt.Println(err.Error())
+	}
+	fmt.Println(result)
 }
 
 func printMyResult(sentence string) {
@@ -61,9 +71,24 @@ func sum(numbers []int) int {
 	return total
 }
 
-// func hitung(number, numberTwo int, operation string) (int, error) {
+func hitung(number, numberTwo int, operation string) (int, error) {
+	var result int
+	var errorResult error
 
-// }
+	switch operation {
+	case "+":
+		result = number + numberTwo
+	case "-":
+		result = number - numberTwo
+	case "*":
+		result = number * numberTwo
+	case "/":
+		result = number / numberTwo
+	default:
+		errorResult = errors.New("Unknown operation")
+	}
+	return result, errorResult
+}
 
 
 //1.input
