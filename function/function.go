@@ -28,6 +28,12 @@ func main() {
 		fmt.Println(err.Error())
 	}
 	fmt.Println(result)
+
+	//named return value
+	a, b, c := getFullName2()
+	fmt.Println(a)
+	fmt.Println(b)
+	fmt.Println(c)
 }
 
 func printMyResult(sentence string) {
@@ -88,6 +94,15 @@ func hitung(number, numberTwo int, operation string) (int, error) {
 		errorResult = errors.New("Unknown operation")
 	}
 	return result, errorResult
+}
+
+//Named return value
+func getFullName2() (firstName string, middleName string, lastName string) {
+	firstName = "Eko"
+	middleName = "Kurniawan"
+	lastName = "Khannedy"
+
+	return
 }
 
 
