@@ -54,6 +54,21 @@ func main() {
 	//function as parameter
 	sayHelloWithFilter("Eko", spamFilter)
 	sayHelloWithFilter("Anjing", spamFilter)
+
+	//anonymous function
+	blacklist := func(name string) bool {
+		return name == "admin"
+	}
+
+	registerUser("admin", blacklist)
+	registerUser("eko", blacklist)
+
+	registerUser("root", func(name string) bool {
+		return name == "root"
+	})
+	registerUser("eko", func(name string) bool {
+		return name == "root"
+	})
 }
 
 func printMyResult(sentence string) {
@@ -156,6 +171,16 @@ func spamFilter(name string) string {
 	}
 }
 
+//anonymous function
+type Blacklist func(string) bool
+
+func registerUser(name string, blacklist Blacklist) {
+	if blacklist(name) {
+		fmt.Println("You are blocked", name)
+	} else {
+		fmt.Println("Welcome", name)
+	}
+}
 
 //1.input
 //2.proses
