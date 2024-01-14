@@ -15,26 +15,26 @@ func main() {
 	// result := add(10, 20)
 	// fmt.Println(result)
 
-	luas, keliling := calculate(10, 2)
-	fmt.Println(luas)
-	fmt.Println(keliling)
+	// luas, keliling := calculate(10, 2) //function multiple return dan kemudian dipecah
+	// fmt.Println(luas)
+	// fmt.Println(keliling)
 
-	scores := []int{10, 5, 8, 9, 7}
-	total := sum(scores)
-	fmt.Println(total)
+	// scores := []int{10, 5, 8, 9, 7}
+	// total := sum(scores) //function dengan input parameter slice
+	// fmt.Println(total)
 
-	result, err := hitung(10, 2, "*")
-	if err != nil {
-		fmt.Println("terjadi kesalahan")
-		fmt.Println(err.Error())
-	}
-	fmt.Println(result)
+	// result, err := hitung(10, 2, "*")
+	// if err != nil {
+	// 	fmt.Println("terjadi kesalahan")
+	// 	fmt.Println(err.Error())
+	// }
+	// fmt.Println(result)
 
-	//named return value
-	a, b, c := getFullName2()
-	fmt.Println(a)
-	fmt.Println(b)
-	fmt.Println(c)
+	// //named return value
+	// a, b, c := getFullName2()
+	// fmt.Println(a)
+	// fmt.Println(b)
+	// fmt.Println(c)
 
 	//variadic function
 	jumlahTotal := sumAll(10, 90, 30, 50, 40)
@@ -43,6 +43,17 @@ func main() {
 	slice := []int{10,20,30,40,50} //input parameter berupa slice
 	jumlahTotal = sumAll(slice...) //variable slice berupa slice harus dipecah sebelum di passing dengan slice... ditambah 3 titik
 	fmt.Println(jumlahTotal)
+
+	// function as value
+	sayGoodBye := getGoodBye
+
+	hasil := sayGoodBye("Eko") // function di simpan di variabel
+	fmt.Println(hasil)			// gunanya untuk mempassing function lain sebagai parameter
+	fmt.Println(getGoodBye("Eko")) //jadi untuk function as parameter
+
+	//function as parameter
+	sayHelloWithFilter("Eko", spamFilter)
+	sayHelloWithFilter("Anjing", spamFilter)
 }
 
 func printMyResult(sentence string) {
@@ -77,7 +88,7 @@ func calculates(panjang int, lebar int) (luas int, keliling int) {
 }
 
 // quiz
-func sum(numbers []int) int {
+func sum(numbers []int) int {		//function dengan input parameter slice
 	// scores := []int{10, 5, 8, 9, 7}
 	var total int
 	for _, number := range numbers {
@@ -121,6 +132,28 @@ func sumAll(numbers ...int) int {
 		total += value
 	}
 	return total
+}
+
+//function as value
+func getGoodBye(name string) string {
+	return "Good Bye " + name
+}
+
+//function sebagai parameter
+
+type Filter func(string) string
+
+func sayHelloWithFilter(name string, filter Filter) {
+	nameFiltered := filter(name)
+	fmt.Println("Hello", nameFiltered)
+}
+
+func spamFilter(name string) string {
+	if name == "Anjing" {
+		return "..."
+	}else {
+		return name
+	}
 }
 
 
